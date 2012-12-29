@@ -8,7 +8,7 @@ import argparse
 # (I don't know Python well, this script may contain silly code)
 #
 
-version = 1.02
+version = 1.03
 timeElapsed = 0
 taskName = ''
 
@@ -55,7 +55,9 @@ def countTime(taskName):
 def pauseOrAbort():
     bQuit = False
     try:
-        temp = raw_input("\n/Paused/ - press [enter] to unpause or ^C to quit\n")
+        timeNow = time.strftime("%H:%M", time.localtime())
+        inputMsg = "\n/Paused (" + timeNow + ")/ - press [enter] to unpause or ^C to quit\n"
+        temp = raw_input(inputMsg)
     except KeyboardInterrupt:
         print
         bQuit = True
