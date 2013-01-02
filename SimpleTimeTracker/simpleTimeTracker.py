@@ -8,7 +8,7 @@ import argparse
 # (I don't know Python well, this script may contain silly code)
 #
 
-version = 1.03
+version = 1.04
 timeElapsed = 0
 taskName = ''
 
@@ -124,8 +124,8 @@ def setupStartTime(timeStr):
     # problably simple integer value
     if timeStr.find(':') == -1:
         try:
-            intTime = int(timeStr)
-            timeElapsed = intTime
+            intTime = int(timeStr) 
+            timeElapsed = intTime * 60 # convert value to # of minutes
         except ValueError:
             print 'Error: unknown time format!'
             printTimeParseError()
@@ -156,7 +156,7 @@ def setupStartTime(timeStr):
             printTimeParseError()
             return
         
-        timeElapsed = hours * 60 + minutes
+        timeElapsed = hours * 3600 + minutes * 60
 
 # -------------------------
 
