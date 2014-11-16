@@ -1,20 +1,18 @@
 
-What the heck is this? 
-----------------------
+What is this repo? 
+==================
 
-I developed those two tools mostly because I did want to have something for simple time tracking + pomodoro timer, but didn't want to have a complex GUI interface. I just wanted something that takes minimal amount of screen space and is very easy to use. 
-
-This goal has been accomplished, I use them on a (more-less) daily basis (especially the time tracking tool). 
-
+Just some command line tools I use on a dalily basis. Time tracking tools that take minimal amount of screen space and are very easy to use. 
 
 Simple Time Tracker
-===================
+-------------------
 
-A very simple time tracker. Tracks time spend on a single activity. 
+Track time spend on a single activity. Optionally you can name a task you are doing. 
 
 
-Pomodorro Timer CLI
-===================
+Pomodoro Timer CLI
+------------------
 
-A very simple command line utility for 'Pomodorro technique' (google it up or watch the intro video: http://pomodorotechnique.com). 
+Pomodoro technique command line timer. Pomodoro lasts 25 minutes followed by 5 minutes break. 
 
+If you're not familiar with the technique, watch the introductory video here: http://pomodorotechnique.com

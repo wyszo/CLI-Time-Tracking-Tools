@@ -2,13 +2,12 @@
 import os, sys, subprocess, time, argparse
 
 #
-# A very simple cli utility for 'Pomidorro technique' (google it up)
-# (I don't know Python well, this script may contain silly code)
+# Simple command line utility for 'Pomodoro technique' (google it up or visit http://pomodorotechnique.com/ )
 #
 
 version = 1.01
-pomidorroLen = 25 # minutes
-breakLen = 5 # minutes
+pomodoroLengthMinutes = 25
+breakLengthMinutes = 5
 
 # -------------------------
 
@@ -44,38 +43,38 @@ def waitNrOfMin(minutes):
 
 # -------------------------
 
-def currTime():
-	currHour = time.strftime('%H')
-	currMin = time.strftime('%M')
-	currTime = currHour + ":" + currMin
-	return currTime
+def currentTime():
+	currentHour = time.strftime('%H')
+	currentMin = time.strftime('%M')
+	currentTime = currentHour + ":" + currentMin
+	return currentTime
 
 # -------------------------
 
-def runPomidorroNr(pomidorroNr):
-	global pomidorroLen
+def runPomodoroNr(pomodoroNr):
+	global pomodoroLengthMinutes
 	
-	helloStr = "Pomidorro #" + str(pomidorroNr) + ": Start [ current time: " + currTime() + " ]" 
+	helloStr = "Pomodoro #" + str(pomodoroNr) + ": Start [ current time: " + currentTime() + " ]"
 	hr = "" + "".join(['-' for i in range(0, len(helloStr))])
 	print "\n" + hr
 	print helloStr
 	print hr + "\n"
 
-	# pomidorro
-	waitNrOfMin(pomidorroLen)
+	# pomodoro
+	waitNrOfMin(pomodoroLengthMinutes)
 
 	timesUp = "\a\nTime's up, time for a break " 
-	print timesUp + " [time: " + str(currTime()) + "]"
+	print timesUp + " [time: " + str(currentTime()) + "]"
 	say(timesUp)
 
 
 def runBreak():
-	global breakLen
+	global breakLengthMinutes
 	
-	waitNrOfMin(breakLen)
+	waitNrOfMin(breakLengthMinutes)
 
 	back2work = "Back to work"
-	print "\a\n" + str(back2work) + " [time: " + str(currTime()) + "]"
+	print "\a\n" + str(back2work) + " [time: " + str(currentTime()) + "]"
 	say(back2work)
 	raw_input("\nhit [Enter] to start next session")
 
@@ -103,7 +102,7 @@ def startSessions(startingNr):
 	
 	while 1:
 		try:
-			runPomidorroNr(nr)
+			runPomodoroNr(nr)
 			nr = nr+1
 			
 			try:
@@ -120,27 +119,27 @@ def startSessions(startingNr):
 	
 # -------------------------
 
-def startNrFromCliArgs():
-	descStr = "A very simple CLI utility for 'Pomidorro technique' (google it up)"
+def nextSessionNumberFromCliArgs():
+	descStr = "Command line utility for 'Pomodoro technique' (google it up or visit http://pomodorotechnique.com/)"
 	parser = argparse.ArgumentParser(description = descStr)
 	
-	parser.add_argument('--start_from', metavar='StartFromNr', default=1, type=int, help='Start counting pomidorro sessions from this number (defaults to 1)')
+	parser.add_argument('--start_from', metavar='StartFromNr', default=1, type=int, help='first pomodoro session number (default: 1)')
 	
-	#parse args
-	args = parser.parse_args()
-	startNr = args.start_from
-	return startNr
+	#parse arguments
+	arguments = parser.parse_args()
+	nextSessionNumber = arguments.start_from
+	return nextSessionNumber
 
 # -------------------------
 
 def main():
-	startNr = startNrFromCliArgs()
-	print '\nPomidorro Timer CLI Utility v' + str(version)
+	nextSessionNumber = nextSessionNumberFromCliArgs()
+	print '\nPomodoro Timer CLI Utility v' + str(version)
 	
 	bQuit = False
 	while not bQuit:
-		result = startSessions(startNr)
-		startNr = result[0]
+		result = startSessions(nextSessionNumber)
+		nextSessionNumber = result[0]
 		bQuit = result[1]
 			
 	return
