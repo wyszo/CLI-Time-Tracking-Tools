@@ -8,6 +8,8 @@ require 'io/console'
 require 'pp'
 
 $VERSION = 1.05
+$elapsedTime = 0
+
 
 def parseLaunchArguments()
 	arguments = {} 
@@ -84,18 +86,30 @@ def formattedTime(time)
     return result 
 end
 
+def timeStringToInt(timeString)
+	if timeString.is_a? Integer
+		return timeString
+	end
+	if timeString.is_a? String
+		# TODO: transfer time string -> int conversion from the python script!
+		return 0 # stub
+	end
+end
+
 def startTimeCounter(taskName, elapsedTime) 
-	if (not elapsedTime) or (elapsedTime == nil) or (elapsedTime.length == 0)
+	if (not elapsedTime) or (elapsedTime == nil)
 		elapsedTime = 0
 	end
+
+	$elapsedTime = elapsedTime
 
 	while (true)
 		if taskName.length > 0
 			print taskName + ' - '
 		end
-		puts formattedTime(elapsedTime)
+		puts formattedTime($elapsedTime)
 		sleep 1
-		elapsedTime += 1
+		$elapsedTime += 1
 	end
 end
 
@@ -114,9 +128,11 @@ def main()
 	launchArguments = parseLaunchArguments()
 	printIntro($VERSION)
 	launchArguments[:task] = grabTaskName(launchArguments[:task])
+	$elapsedTime = launchArguments[:time]
+
 	while(1)
 		begin
-			startTimeCounter(launchArguments[:task], launchArguments[:time])
+			startTimeCounter(launchArguments[:task], $elapsedTime)
 		rescue Interrupt
 			pauseOrAbort()
 		end
@@ -124,3 +140,7 @@ def main()
 end
 
 main()
+
+
+# TODO: 
+# 	1. handling "time" launch argument (converting from string to int and remembering value)
