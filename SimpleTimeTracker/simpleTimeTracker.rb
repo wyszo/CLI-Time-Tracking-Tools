@@ -4,11 +4,10 @@
 #
 
 require 'optparse'
+require 'io/console'
 require 'pp'
 
-
 $VERSION = 1.05
-
 
 def parseLaunchArguments()
 	arguments = {} 
@@ -39,7 +38,6 @@ def parseLaunchArguments()
 	return arguments
 end
 
-
 def printIntro(version)
 	puts ""
 	puts "-----------------------------------------"
@@ -48,17 +46,17 @@ def printIntro(version)
     puts ""
 end
 
-
 def grabTaskName(currentTaskName)
 	taskName = currentTaskName
 
 	if String(currentTaskName).length == 0
 		taskName = ''
 		begin 
-			puts "Enter task name: "
+			print "Enter task name: "
 			rawTaskName = gets
 			rawTaskName ||= ''
 			taskName = rawTaskName.chomp!
+			puts ''
 		rescue Interrupt
 			exit
 		end
@@ -66,15 +64,63 @@ def grabTaskName(currentTaskName)
 	return taskName
 end
 
+def twoDigitsStringFromNumber(number)
+    result = String(number)
+    if number < 10
+        result = "0" + String(number)
+    end
+    return result
+end
+
+def formattedTime(time)
+ 	hours = time / 3600
+    minutes = (time % 3600) / 60
+    seconds = time - hours * 3600 - minutes * 60
+
+    result = twoDigitsStringFromNumber(hours) + ":"
+    result += twoDigitsStringFromNumber(minutes) + ":"
+    result += twoDigitsStringFromNumber(seconds) 
+
+    return result 
+end
+
+def startTimeCounter(taskName, elapsedTime) 
+	if (not elapsedTime) or (elapsedTime == nil) or (elapsedTime.length == 0)
+		elapsedTime = 0
+	end
+
+	while (true)
+		if taskName.length > 0
+			print taskName + ' - '
+		end
+		puts formattedTime(elapsedTime)
+		sleep 1
+		elapsedTime += 1
+	end
+end
+
+def pauseOrAbort()
+	begin 
+		print "\n/Paused/ - press [enter] to unpause or ^C to quit\n"
+		STDIN.noecho(&:gets)
+		puts ''
+	rescue Interrupt
+		puts ''
+		exit
+	end
+end
 
 def main()
 	launchArguments = parseLaunchArguments()
 	printIntro($VERSION)
 	launchArguments[:task] = grabTaskName(launchArguments[:task])
+	while(1)
+		begin
+			startTimeCounter(launchArguments[:task], launchArguments[:time])
+		rescue Interrupt
+			pauseOrAbort()
+		end
+	end
 end
 
-
 main()
-
-
-# 2. enter task name (if not present)
