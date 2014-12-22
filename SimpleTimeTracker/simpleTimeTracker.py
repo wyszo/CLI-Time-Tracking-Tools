@@ -1,12 +1,13 @@
+#
+# A very simple time tracker. Tracks time spend on a single activity.
+# Python version
+#
 
 import os, sys
 import time
 import argparse
 
-#
-# A very simple time tracker. Tracks time spend on a single activity.
-# (I don't know Python well, this script may contain silly code)
-#
+# -------------------------
 
 version = 1.04
 timeElapsed = 0
