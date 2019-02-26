@@ -7,7 +7,7 @@ class LogsWriter:
     	self.log_filename = log_filename
     	self.dir_name = dir_name
 
-    def createLogsDir(self):
+    def create_logs_dir(self):
         # If logs directory doesn't exist, create it 
 
         if not os.path.isdir(self.dir_name):

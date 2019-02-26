@@ -14,9 +14,9 @@ class LogsWriterTestCase(unittest.TestCase):
 		# Given: log directory doesn't exist
 		os.path.isdir = lambda dir: False
 
-		# When: createLogsDir called
+		# When: create_logs_dir called
 		sut = LogsWriter('mockDirName', 'mockLogName')
-		sut.createLogsDir()
+		sut.create_logs_dir()
 
 		# Then: mkdir should be called
 		self.assertTrue(os.mkdir.called)
@@ -27,16 +27,12 @@ class LogsWriterTestCase(unittest.TestCase):
 		# Given: directory exists
 		os.path.isdir = lambda dir: True
 
-		# When: createLogsDir called
+		# When: create_logs_dir called
 		sut = LogsWriter('mockDirName', 'mockLogName')
-		sut.createLogsDir()
+		sut.create_logs_dir()
 
 		# Then: mkdir should NOT be called
 		self.assertFalse(os.mkdir.called)
-
-
-	def test_create_log_file_if_doesnt_exist(self):
-		self.assertFalse("NOT IMPLEMENTED YET")
 
 
 if __name__ == '__main__':
