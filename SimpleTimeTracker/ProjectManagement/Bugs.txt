@@ -2,4 +2,5 @@
 Simple Time Tracker - Bugs
 ==========================
 
--
+Bug #1: 
+The script doesn't work with Python 3.x 

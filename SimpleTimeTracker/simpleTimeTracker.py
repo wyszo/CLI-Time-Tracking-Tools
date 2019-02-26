@@ -3,7 +3,8 @@ import os, sys
 import time
 import argparse
 
-from logsWriter import LogsWriter
+from logswriter import LogsWriter
+from dateformatter import DateFormatter
 
 #
 # A very simple time tracker. Tracks time spend on a single activity.
@@ -184,7 +185,9 @@ def parseArgs():
 # -------------------------
 
 def main():
-    writer = LogsWriter(logsDirName)
+    today = DateFormatter().today()
+
+    writer = LogsWriter(logsDirName, today)
     writer.createLogsDir()
 
     parseArgs()

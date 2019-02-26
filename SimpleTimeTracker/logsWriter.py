@@ -1,9 +1,10 @@
+
 import os
-from datetime import date
+
 
 class LogsWriter: 
-    def __init__(self, dir_name):
-    	self.today = DateFormatter().today()
+    def __init__(self, dir_name, log_filename):
+    	self.log_filename = log_filename
     	self.dir_name = dir_name
 
     def createLogsDir(self):
@@ -14,8 +15,3 @@ class LogsWriter:
                 os.mkdir(self.dir_name)
             except:
                 print("Warning! Couldn't create \\" + dir_name + " directory!")
-
-
-class DateFormatter:
-	def today(self):
-		return str(date.today())
