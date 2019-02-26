@@ -127,3 +127,11 @@ When the date changes, the tracker still uses yesterday's file (until it's termi
 Given: 	The tracker is running
 When: 	Time reaches midnight
 Then:	The log file for the new date should NOT be created. The old file for yesterday's date should be updated with line '$(currentTask) - $x+1 min'.
+
+
+AC13:
+
+When the script invoked with the --no-logs flag, log file should not be used.
+
+Given: 	The tracker has been invoked with the --no-logs flag
+Then:	The log file should not be used and should not change. 
