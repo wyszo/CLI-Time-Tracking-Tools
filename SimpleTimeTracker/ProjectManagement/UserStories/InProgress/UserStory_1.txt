@@ -41,17 +41,6 @@ and:    It should contain a single entry '$(currentTask) - 0 min'
 AC3: 
 
 The log file should be updated each minute. 
-
-Given 	The tracker is running 
-When	A subsequent minute passes
-Then	The log file '$(currentDate).txt' should be updated: the last line should change from '$(currentTask) - $x min' to '$(currentTask) - $x+1 min' 
-
-
-AC4: 
-
-If the task was started with a non-zero time, the log should start with that time.
-
-Given	I run the tracker with a new task and a non-zero start time of $x minutes 	
 Then	The file '$(currentDate).txt' should be created
 and:   	It should contain a single entry '$(currentTask) - $x min' 
 
@@ -73,6 +62,17 @@ Given: 	The tracker is running with a task A
 When: 	The tracker is closed and reopened with a task B
 Then: 	The line '$(currentTask) - 0 min' should be appended to the file
 
+
+Given 	The tracker is running 
+When	A subsequent minute passes
+Then	The log file '$(currentDate).txt' should be updated: the last line should change from '$(currentTask) - $x min' to '$(currentTask) - $x+1 min' 
+
+
+AC4: 
+
+If the task was started with a non-zero time, the log should start with that time.
+
+Given	I run the tracker with a new task and a non-zero start time of $x minutes 	
 
 AC7: 
 
@@ -100,3 +100,30 @@ Given: 	The tracker is running
 When:	User manually changed the last line task name in the current day's log file
 And:	A subsequent minute has passed
 Then: 	The line '$(currentTask) - $x min' should be appended to the log file 
+
+
+AC10:
+
+Log file is not updated while the timer is paused.
+
+Given:	The tracker is paused
+When:	A minute has passed
+Then:	There are no changes writen to the log file 	
+
+
+AC11: 
+
+Log file keeps being updated when the timer gets unpaused. 
+
+Given: 	The tracker was paused and is now unpaused
+When:	A minute has passed
+Then:	The last line in the log file should be updated from '$(currentTask) - $x min' to '$(currentTask0 - $x+1 min'
+
+
+AC12: 
+
+When the date changes, the tracker still uses yesterday's file (until it's terminated). 
+
+Given: 	The tracker is running
+When: 	Time reaches midnight
+Then:	The log file for the new date should NOT be created. The old file for yesterday's date should be updated with line '$(currentTask) - $x+1 min'.
