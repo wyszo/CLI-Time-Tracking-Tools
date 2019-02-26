@@ -3,6 +3,8 @@ import os, sys
 import time
 import argparse
 
+from logsWriter import LogsWriter
+
 #
 # A very simple time tracker. Tracks time spend on a single activity.
 # (I don't know Python well, this script may contain silly code)
@@ -11,6 +13,7 @@ import argparse
 version = 1.04
 timeElapsed = 0
 taskName = ''
+logsDirName = 'logs'
 
 # -------------------------
 
@@ -181,6 +184,9 @@ def parseArgs():
 # -------------------------
 
 def main():
+    writer = LogsWriter(logsDirName)
+    writer.createLogsDir()
+
     parseArgs()
     start()
     return
