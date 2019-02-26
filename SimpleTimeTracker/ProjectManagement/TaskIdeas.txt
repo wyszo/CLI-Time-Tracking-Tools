@@ -1,0 +1,5 @@
+
+Simple Time Tracker - Task ideas
+================================
+
+- move the implementation to Swift 

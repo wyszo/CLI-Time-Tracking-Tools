@@ -1,0 +1,102 @@
+
+Simple Time Tracker - User Story 1
+==================================
+
+User Story: 
+----------
+(as a user) I want the logs of what I've done to be written down to a text file every day
+So that I know what I've been working on and for how long 
+
+
+Acceptance Criteria: 
+--------------------
+
+AC0: 
+
+Log directory should be created if it doesn't exist.
+
+Given:	'log' directory doesn't exist
+When:	The tracker is opened
+Then: 	The 'log' directory should be created
+
+
+AC1: 
+
+Log file for a day shouldn't initially exist.
+
+Given	I haven't used the tracker today
+When  	I check the 'logs' directory 
+Then  	The file '$(currentDate).txt' should not exist 
+
+
+AC2: 
+
+The log file for a day should be created instantly with value '0 min'. 
+
+Given	I run the tracker with a new task and no start time
+Then 	The file '$(currentDate).txt' should be created 
+and:    It should contain a single entry '$(currentTask) - 0 min'
+
+
+AC3: 
+
+The log file should be updated each minute. 
+
+Given 	The tracker is running 
+When	A subsequent minute passes
+Then	The log file '$(currentDate).txt' should be updated: the last line should change from '$(currentTask) - $x min' to '$(currentTask) - $x+1 min' 
+
+
+AC4: 
+
+If the task was started with a non-zero time, the log should start with that time.
+
+Given	I run the tracker with a new task and a non-zero start time of $x minutes 	
+Then	The file '$(currentDate).txt' should be created
+and:   	It should contain a single entry '$(currentTask) - $x min' 
+
+
+AC5: 
+
+When the timer is closed, current time should be saved. 
+
+Given: 	The tracker is running
+When: 	The tracker is closed
+Then: 	The line '$(currentTask) - $x min $y sec' should be appended to the log file 
+
+
+AC6: 
+
+When the task changes to a different one, a new line should be append to the log file (with value '0 min'). 
+
+Given: 	The tracker is running with a task A
+When: 	The tracker is closed and reopened with a task B
+Then: 	The line '$(currentTask) - 0 min' should be appended to the file
+
+
+AC7: 
+
+When the tracker is closed and reopened with the same task - a new line should be appended to the log file (with value '0 min').
+
+Given: 	The tracker is running with a task A
+When:	The tracker is closed and reopened with a task A 
+Then: 	The line '$(currentTask) - 0 min' should be appended to the file 
+
+
+AC8:
+
+Manual changes to the current day log file should be possible while the tracker is running. 
+
+Given: 	The tracker is running. 
+When:	Current day log file is opened, modified and saved
+Then: 	New changes should be preserved. 
+
+
+AC9: 
+
+When the user manually made a change to the last saved task name in the log file while the tracker was running, it should append a new line at the end.
+
+Given: 	The tracker is running
+When:	User manually changed the last line task name in the current day's log file
+And:	A subsequent minute has passed
+Then: 	The line '$(currentTask) - $x min' should be appended to the log file 
