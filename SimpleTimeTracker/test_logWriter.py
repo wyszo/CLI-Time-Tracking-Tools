@@ -35,5 +35,9 @@ class LogsWriterTestCase(unittest.TestCase):
 		self.assertFalse(os.mkdir.called)
 
 
+	def test_create_log_file_if_doesnt_exist(self):
+		self.assertFalse("NOT IMPLEMENTED YET")
+
+
 if __name__ == '__main__':
 	unittest.main()
