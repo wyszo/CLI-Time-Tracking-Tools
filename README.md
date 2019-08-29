@@ -9,6 +9,9 @@ Simple Time Tracker
 
 Track time spend on a single activity. Optionally you can name a task you are doing. 
 
+You can also track how much money you've made by doing the task so far (also optional). 
+
+![time tracker gif](gifs/simpleTimeTracker.gif)
 
 Pomodoro Timer CLI
 ------------------
