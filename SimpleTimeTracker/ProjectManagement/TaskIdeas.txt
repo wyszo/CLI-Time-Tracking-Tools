@@ -2,4 +2,5 @@
 Simple Time Tracker - Task ideas
 ================================
 
-- move the implementation to Swift 
+- make the script display time inline, without printing a newline each time
+- move the implementation to Swift

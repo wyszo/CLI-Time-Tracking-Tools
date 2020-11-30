@@ -37,9 +37,9 @@ def format_time(in_time):
 
     result = as_two_digits_string(hours) + ":"
     result += as_two_digits_string(minutes) + ":"
-    result += as_two_digits_string(seconds) 
+    result += as_two_digits_string(seconds)
 
-    return result 
+    return result
 
 
 def time_to_hours(in_time):
@@ -56,21 +56,28 @@ def count_time(task_name):
 
     show_time_interval = 1 # update printed time info only after # seconds - it is NOT the same as time_step, don't mix those two
     ctr = 0
-    
+
     while True:
         if ctr % show_time_interval == 0:
-            
+
             income_line = ''
-            if income_per_hour != 0: 
+            if income_per_hour != 0:
                 income_line = ". Earned " + str(money_earned()) + currency
 
-            print task_name + " - " + format_time(time_elapsed) + income_line
+            print_inline(task_name + " - " + format_time(time_elapsed) + income_line)
 
         ctr += 1
 
         time.sleep(time_step)
         time_elapsed += time_step
     return
+
+# -------------------------
+
+def print_inline(text):
+    to_print = '\r' + text
+    sys.stdout.write(to_print)
+    sys.stdout.flush()
 
 # -------------------------
 
@@ -94,7 +101,7 @@ def pause_or_abort():
     except KeyboardInterrupt:
         print
         quit = True
-    
+
     print
     return quit
 
@@ -130,56 +137,56 @@ def start():
 def print_time_parse_error():
     print 'Consult --help for supported time formats!'
     print 'Sorry, defaulting elapsed time to 0!'
-    
-    
+
+
 def filtertime_str(time_str):
     # remove invalid characters
     allowedChars = ':hm'
     filteredStr = ''.join(c for c in time_str if c.isdigit() or c in allowedChars)
-    
+
     # convert format HH'h'MM'm', convert to hh:mm
     str = filteredStr
     str = str.replace('h', ':')
     str = str.replace('m', '')
-    
+
     return str
-    
+
 
 def setup_start_time(time_str):
     global time_elapsed
-    
+
     # character validation & filtering
     if time_str == 0:
         return
-    
+
     time_str = filtertime_str(time_str)
-        
+
     # problably simple integer value
     if time_str.find(':') == -1:
         try:
-            int_time = int(time_str) 
+            int_time = int(time_str)
             time_elapsed = int_time * 60 # convert value to # of minutes
         except ValueError:
             print 'Error: unknown time format!'
             print_time_parse_error()
             return
-    # probably format hh:mm    
+    # probably format hh:mm
     else:
         time = time_str.split(':')
-        
+
         # check for unsupported characters # obsolete - done during filtering
         for c in time_str:
-            if c.isdigit() == False and c != ':': 
+            if c.isdigit() == False and c != ':':
                 print ("Error: unknown time format! Unsupported character: '" + c + "'")
                 print_time_parse_error()
                 return
-    
+
         # validate time array length and element types
         if len(time) > 2 or (time[0].isdigit() == False) or (time[1].isdigit() == False):
             print "Error: unknown time format!"
             print_time_parse_error()
             return
-        
+
         # everything seems fine, set elapsed time
         try:
             hours = int(time[0])
@@ -188,7 +195,7 @@ def setup_start_time(time_str):
             print 'Error: unknown time format!'
             print_time_parse_error()
             return
-        
+
         time_elapsed = hours * 3600 + minutes * 60
 
 # -------------------------
@@ -204,8 +211,8 @@ def parse_args():
     already_earned_arg_name = 'already_earned'
 
     # prepare arg parser
-    descStr = ("A very simple time tracker. Shows time spend on a single activity.\n\n" 
-              "Example usage: \n" 
+    descStr = ("A very simple time tracker. Shows time spend on a single activity.\n\n"
+              "Example usage: \n"
               "\tpython simpleTimeTracker.py --{} 'Gardening'\n".format(task_arg_name) +
               "\tpython simpleTimeTracker.py --{} 'Planning' --{} 3:10\n".format(task_arg_name, start_time_arg_name) +
               "\tpython simpleTimeTracker.py --{} 'Article writing' --{} 25 --{} '$'\n".format(task_arg_name, income_per_hour_arg_name, currency_arg_name) +
@@ -213,10 +220,10 @@ def parse_args():
               )
 
     parser = argparse.ArgumentParser(description = descStr, formatter_class=argparse.RawTextHelpFormatter)
-    
+
     parser.add_argument('--{}'.format(start_time_arg_name), metavar='StartTime', default=0, type=str, help='Start Time (in minutes or format HH:MM, eg: \'3:23\' or format with \'h\' and \'m\' characters, like \'3h15m\').')
     parser.add_argument('--{}'.format(task_arg_name), metavar='task_name', type=str, help='Name of the activity which you want to track')
-    
+
     parser.add_argument('--{}'.format(income_per_hour_arg_name), metavar='income_per_hour', type=int, help='Amount of money earned every hour')
     parser.add_argument('--{}'.format(currency_arg_name), metavar='currency', type=str, help='Currency of money earned')
     parser.add_argument('--{}'.format(already_earned_arg_name), metavar='already_earned', type=int, help='Initial amount of money for total earnings calculation. Defaults to 0')
