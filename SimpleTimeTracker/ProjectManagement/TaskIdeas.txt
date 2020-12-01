@@ -2,5 +2,5 @@
 Simple Time Tracker - Task ideas
 ================================
 
-- make the script display time inline, without printing a newline each time
+- make the timer ask for the extra parameters if those not given at start
 - move the implementation to Swift

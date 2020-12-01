@@ -1,3 +1,4 @@
+#!/usr/bin/python
 
 import os, sys
 import time
@@ -49,6 +50,9 @@ def time_to_minutes_after_full_hour(in_time):
     return (in_time % 3600) / 60
 
 def count_time(task_name):
+    sys.path.insert(1, '../Common')
+    import shared
+
     global time_elapsed
     global income_per_hour, currency
 
@@ -64,20 +68,13 @@ def count_time(task_name):
             if income_per_hour != 0:
                 income_line = ". Earned " + str(money_earned()) + currency
 
-            print_inline(task_name + " - " + format_time(time_elapsed) + income_line)
+            shared.print_inline(task_name + " - " + format_time(time_elapsed) + income_line)
 
         ctr += 1
 
         time.sleep(time_step)
         time_elapsed += time_step
     return
-
-# -------------------------
-
-def print_inline(text):
-    to_print = '\r' + text
-    sys.stdout.write(to_print)
-    sys.stdout.flush()
 
 # -------------------------
 
