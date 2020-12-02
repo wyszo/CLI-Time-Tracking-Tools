@@ -12,7 +12,7 @@ from dateformatter import DateFormatter
 # (I don't know Python well, this script may contain silly code)
 #
 
-version = 1.04
+version = '1.0.5'
 
 # TODO: get rid of those global vars
 time_elapsed = 0
@@ -50,7 +50,9 @@ def time_to_minutes_after_full_hour(in_time):
     return (in_time % 3600) / 60
 
 def count_time(task_name):
-    sys.path.insert(1, '../Common')
+    current_dir = os.path.dirname(__file__)
+    common_dir = os.path.join(current_dir, '../Shared')
+    sys.path.append(common_dir)
     import shared
 
     global time_elapsed

@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 
 import os, sys, subprocess, time, argparse
 
@@ -6,7 +6,7 @@ import os, sys, subprocess, time, argparse
 # Simple command line utility for 'Pomodoro technique' (google it up or visit http://pomodorotechnique.com/ )
 #
 
-version = 1.01
+version = '1.0.2'
 pomodoroLengthMinutes = 25
 breakLengthMinutes = 5
 
@@ -30,7 +30,9 @@ def say(text):
 # -------------------------
 
 def waitNrOfMin(minutes):
-    sys.path.insert(1, '../Common')
+    current_dir = os.path.dirname(__file__)
+    common_dir = os.path.join(current_dir, '../Shared')
+    sys.path.append(common_dir)
     import shared
 
     secsInMinute = 60

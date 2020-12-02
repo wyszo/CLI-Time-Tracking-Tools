@@ -1,16 +1,24 @@
 
-What is this repo? 
-==================
+Command Line Time Tracking Tools
+================================
 
-Just some command line tools I use on a dalily basis. Time tracking tools that take minimal amount of screen space and are very easy to use. 
+The repo contains command line tools helpful with time tracking from terminal. They take up minimal amount of screen space (since they have no UI) and are easy to use. 
 
-Simple Time Tracker
--------------------
 
-Track time spend on a single activity. Optionally you can name a task you are doing. 
+Countdown Timer CLI (WIP)
+-------------------------
 
-You can also track how much money you've made by doing the task so far (also optional). 
+A simple command line countdown timer. 
 
+
+Simple Time Tracker CLI
+-----------------------
+
+Tracks time spend on a single activity. You can optionally name the task in progress. 
+
+You can also track how much money you've made so far by executing the task so far (optional). 
+
+(image from an older release)
 ![time tracker gif](gifs/simpleTimeTracker.gif)
 
 Pomodoro Timer CLI
@@ -19,3 +27,4 @@ Pomodoro Timer CLI
 Pomodoro technique command line timer. Pomodoro lasts 25 minutes followed by 5 minutes break. 
 
 If you're not familiar with the technique, watch the introductory video here: http://pomodorotechnique.com
+
