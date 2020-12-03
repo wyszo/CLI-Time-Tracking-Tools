@@ -12,6 +12,15 @@ breakLengthMinutes = 5
 
 # -------------------------
 
+def add_shared_dir_to_path():
+    import os, sys
+
+    current_dir = os.path.dirname(__file__)
+    shared_dir = os.path.join(current_dir, '../Shared')
+    sys.path.append(shared_dir)
+
+# -------------------------
+
 def cmdExists(cmd):
     return subprocess.call(["command", "-v", cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE) == 0
 
@@ -30,9 +39,7 @@ def say(text):
 # -------------------------
 
 def waitNrOfMin(minutes):
-    current_dir = os.path.dirname(__file__)
-    common_dir = os.path.join(current_dir, '../Shared')
-    sys.path.append(common_dir)
+    add_shared_dir_to_path()
     import shared
 
     secsInMinute = 60

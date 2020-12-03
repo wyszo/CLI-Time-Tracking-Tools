@@ -24,6 +24,15 @@ already_earned = 0
 
 # -------------------------
 
+def add_shared_dir_to_path():
+    import os, sys
+
+    current_dir = os.path.dirname(__file__)
+    shared_dir = os.path.join(current_dir, '../Shared')
+    sys.path.append(shared_dir)
+
+# -------------------------
+
 def as_two_digits_string(nr):
     result = str(nr)
     if nr < 10:
@@ -50,9 +59,7 @@ def time_to_minutes_after_full_hour(in_time):
     return (in_time % 3600) / 60
 
 def count_time(task_name):
-    current_dir = os.path.dirname(__file__)
-    common_dir = os.path.join(current_dir, '../Shared')
-    sys.path.append(common_dir)
+    add_shared_dir_to_path()
     import shared
 
     global time_elapsed
