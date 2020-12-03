@@ -3,10 +3,9 @@
 import os, sys, subprocess, time, argparse
 
 #
-# Simple command line utility for 'Pomodoro technique' (google it up or visit http://pomodorotechnique.com/ )
-#
+# Pomodoro Technique Command Line script
+# (google it or visit http://pomodorotechnique.com/ ) #
 
-version = '1.0.2'
 pomodoroLengthMinutes = 25
 breakLengthMinutes = 5
 
@@ -147,7 +146,9 @@ def nextSessionNumberFromCliArgs():
 
 def main():
     nextSessionNumber = nextSessionNumberFromCliArgs()
-    print '\nPomodoro Timer CLI Utility v' + str(version)
+    add_shared_dir_to_path()
+    import shared, version, settings
+    shared.print_version(settings.printable_script_name, version.version)
 
     bQuit = False
     while not bQuit:

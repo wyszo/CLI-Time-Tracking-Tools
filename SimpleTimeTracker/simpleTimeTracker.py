@@ -8,8 +8,7 @@ from logswriter import LogsWriter
 from dateformatter import DateFormatter
 
 #
-# A very simple time tracker. Tracks time spend on a single activity.
-# (I don't know Python well, this script may contain silly code)
+# Simple Time Tracker. Tracks time spend on a single activity.
 #
 
 version = '1.0.5'
@@ -113,13 +112,21 @@ def pause_or_abort():
 
 # -------------------------
 
+def print_signature():
+    add_shared_dir_to_path()
+    import shared, settings
+
+    print '\n---------------------------'
+    shared.print_version(settings.printable_script_name, version, newline=False)
+    print '---------------------------\n'
+
+# -------------------------
+
 def start():
     global version
     global time_elapsed, task_name
 
-    print '\n-----------------------------------------'
-    print 'A very simple Time Tracking Utility v' + str(version)
-    print '-----------------------------------------\n'
+    print_signature()
 
     if not len(task_name):
         try:

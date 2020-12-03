@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #
-# A simple command line countdown timer
+# Command Line Countdown Timer
 #
 
 # -------------------------
@@ -17,7 +17,7 @@ def add_shared_dir_to_path():
 
 def main():
     add_shared_dir_to_path()
-    import shared, version
-    shared.print_version('Countdown Timer', version.version)
+    import shared, version, settings
+    shared.print_version(settings.printable_script_name, version.version)
 
 main()

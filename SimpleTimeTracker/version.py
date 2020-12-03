@@ -1,1 +1,5 @@
-version = '0.0.1'
+#
+# Countdown Timer
+#
+
+version = '0.0.2'

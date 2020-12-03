@@ -11,9 +11,13 @@ def print_inline(text):
     sys.stdout.write(to_print)
     sys.stdout.flush()
 
-def print_version(script_name, script_version):
+def print_version(script_name, script_version, newline=True):
     """
     Print script name and version applying default formatting
     """
-    print '\n' + script_name + ' v' + str(script_version)
+    newline_char = ''
+
+    if newline:
+        newline_char = '\n'
+    print newline_char + script_name + ' v' + str(script_version)
 
