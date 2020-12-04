@@ -4,7 +4,8 @@ import os, sys, subprocess, time, argparse
 
 #
 # Pomodoro Technique Command Line script
-# (google it or visit http://pomodorotechnique.com/ ) #
+# (google it or visit http://pomodorotechnique.com/ )
+#
 
 pomodoroLengthMinutes = 25
 breakLengthMinutes = 5
@@ -135,7 +136,11 @@ def nextSessionNumberFromCliArgs():
     descStr = "Command line utility for 'Pomodoro technique' (google it up or visit http://pomodorotechnique.com/)"
     parser = argparse.ArgumentParser(description = descStr)
 
-    parser.add_argument('--start_from', metavar='StartFromNr', default=1, type=int, help='first pomodoro session number (default: 1)')
+    parser.add_argument('--start_from',
+                        metavar='StartFromNr',
+                        default=1,
+                        type=int,
+                        help='first pomodoro session number (default: 1)')
 
     #parse arguments
     arguments = parser.parse_args()
