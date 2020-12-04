@@ -11,8 +11,6 @@ from dateformatter import DateFormatter
 # Simple Time Tracker. Tracks time spend on a single activity.
 #
 
-version = '1.0.5'
-
 # TODO: get rid of those global vars
 time_elapsed = 0
 task_name = ''
@@ -114,10 +112,10 @@ def pause_or_abort():
 
 def print_signature():
     add_shared_dir_to_path()
-    import shared, settings
+    import shared, settings, version
 
     print '\n---------------------------'
-    shared.print_version(settings.printable_script_name, version, newline=False)
+    shared.print_version(settings.printable_script_name, version.version, newline=False)
     print '---------------------------\n'
 
 # -------------------------

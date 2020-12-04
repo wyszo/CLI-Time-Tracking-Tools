@@ -1,5 +1,6 @@
+#
+# Countdown Timer
+#
 
-version = '0.0.2'
+version = '0.0.3'
 
-def print_version(script_name):
-    print '\n' + script_name + ' v' + str(version)

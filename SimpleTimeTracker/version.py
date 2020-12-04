@@ -1,5 +1,5 @@
 #
-# Countdown Timer
+# Simple Time Tracker
 #
 
-version = '0.0.2'
+version = '1.0.5'
