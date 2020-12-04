@@ -2,8 +2,5 @@
 Tasks: Countdown Timer
 ======================
 
-[ ] move print_version to shared.py
-[ ] use print_version in SimpleTimeTracker and PomodoroTimerCli
-[ ] add argparse support
-[ ] print help instructions for --help
-[ ] add a note about the Countdown timer in the Readme.md
+[ ] add a class that prints remaining time every minute
+[ ] make that class use --start_from cli argument
