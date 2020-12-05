@@ -20,10 +20,10 @@ class ArgumentsParser:
     def add_start_from_argument(self, default_start_from):
         self.parser.add_argument('--start_from',
                                  metavar='start_from_minutes',
-                                 default=default_start_from,
                                  type=int,
                                  help='initial countdown value (minutes)')
 
     def parse_arguments(self):
         arguments = self.parser.parse_args()
+        self.start_from = arguments.start_from
 

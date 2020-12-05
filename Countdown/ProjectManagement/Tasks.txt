@@ -3,4 +3,3 @@ Tasks: Countdown Timer
 ======================
 
 [ ] add a class that prints remaining time every minute
-[ ] make that class use --start_from cli argument

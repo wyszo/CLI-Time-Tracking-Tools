@@ -3,7 +3,6 @@
 #
 # Command Line Countdown Timer
 #
-
 # -------------------------
 
 def add_shared_dir_to_path():
@@ -17,12 +16,12 @@ def add_shared_dir_to_path():
 
 def main():
     add_shared_dir_to_path()
+    import header
+    header.print_header()
 
-    import shared, version, settings
-    shared.print_version(settings.printable_script_name, version.version)
-
-    import arguments_parser
-    arguments_parser = arguments_parser.ArgumentsParser()
-    arguments_parser.parse_arguments()
+    import arguments
+    start_from = arguments.parse_script_arguments_or_ask()
+    import timer
+    timer = timer.Timer(start_from)
 
 main()
