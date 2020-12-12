@@ -23,5 +23,6 @@ def main():
     start_from = arguments.parse_script_arguments_or_ask()
     import timer
     timer = timer.Timer(start_from)
+    timer.start()
 
 main()
