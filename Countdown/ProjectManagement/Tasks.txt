@@ -2,8 +2,8 @@
 Tasks: Countdown Timer
 ======================
 
-[ ] print a message at the end of countdown
 [ ] repeat asking for a countdown value until a valid integer is entered
-[ ] play a sound effect at the end
+[ ] make a gif showing how the Countdown timer works and add to the Readme file
 [ ] add a parameter tick_every_secs to allow updating the timer every X seconds (by default X==1)
+[ ] play a sound effect at the end
 [ ] add a configuration file where you can set a default countdown duration that will be used if it's not provided when the prompt prints
